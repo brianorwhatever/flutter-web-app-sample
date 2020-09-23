@@ -15,11 +15,9 @@ spec:
       uri: "https://github.com/brianorwhatever/flutter-web-app-sample"
   strategy:
     dockerStrategy:
-      from:
-        kind: "ImageStreamTag"
-        name: "nginx-110-rhel7:latest"
+      dockerfilePath: Dockerfile
   output: 
     to:
       kind: "ImageStreamTag"
-      name: "flutter-web-app-sample:latest"
+      name: "fwa-sample:latest"
 
