@@ -1,0 +1,25 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: "fwa-build" 
+spec:
+  runPolicy: "Serial" 
+  triggers:
+    - type: "GitHub"
+      github:
+        secretReference:
+          name: "mysecret"
+    - type: "ImageChange"
+  source:
+    git:
+      uri: "https://github.com/brianorwhatever/flutter-web-app-sample"
+  strategy:
+    dockerStrategy:
+      from:
+        kind: "ImageStreamTag"
+        name: "nginx-110-rhel7:latest"
+  output: 
+    to:
+      kind: "ImageStreamTag"
+      name: "flutter-web-app-sample:latest"
+
