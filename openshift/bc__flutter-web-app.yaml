@@ -1,14 +1,14 @@
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
-  name: "fwa-build" 
+  name: "flutter-web-app" 
 spec:
   runPolicy: "Serial" 
   triggers:
     - type: "GitHub"
       github:
         secretReference:
-          name: "mysecret"
+          name: "flutter-web-app"
     - type: "ImageChange"
   source:
     git:
@@ -19,5 +19,5 @@ spec:
   output: 
     to:
       kind: "ImageStreamTag"
-      name: "fwa-sample:latest"
+      name: "flutter-web-app:latest"
 
