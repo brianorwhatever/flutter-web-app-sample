@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: flutter-web-app
+  namespace: flutter-web-app
+spec:
+  path: /
+  to:
+    kind: Service
+    name: flutter-web-app
+  port:
+    targetPort: 8080
