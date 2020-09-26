@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: flutter-web-app
+spec:
+  replicas: 5
+  selector:
+    name: flutter-web-app
+  template:
+    metadata:
+      labels:  
+        name: flutter-web-app 
+    spec:
+      containers:
+      - image: flutter-web-app
+        name: flutter-web-app
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+      restartPolicy: Always
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - flutter-web-app
+      from:
+        kind: ImageStreamTag
+        name: flutter-web-app:latest
+    type: ImageChange
+  strategy:
+    type: Rolling
